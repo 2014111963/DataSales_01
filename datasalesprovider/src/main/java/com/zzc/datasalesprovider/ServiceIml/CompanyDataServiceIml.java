@@ -19,12 +19,12 @@ public class CompanyDataServiceIml implements CompanyDataService {
     CompanyDataCompanyMapper companyDataCompanyMapper;
     
     @Override
-    public List<CompanyDataCompanyWithBLOBs> getAllData(FilterCondition data){
+    public List<CompanyDataCompanyWithBLOBs> getFilterData(FilterCondition data){
         return companyDataCompanyMapper.selectAllData(data);
     }
 
     @Override
-    public List<CompanyDataCompanyWithBLOBs> selectByPrimaryKey(){
+    public List<CompanyDataCompanyWithBLOBs>  getAllData(){
         return companyDataCompanyMapper.selectByPrimaryKey();
     }
 }

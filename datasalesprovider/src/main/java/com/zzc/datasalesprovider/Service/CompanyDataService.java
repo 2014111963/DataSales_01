@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CompanyDataService {
 
-    public List<CompanyDataCompanyWithBLOBs> getAllData(FilterCondition data);
+    public List<CompanyDataCompanyWithBLOBs> getFilterData(FilterCondition data);
 
-    List<CompanyDataCompanyWithBLOBs> selectByPrimaryKey();
+    List<CompanyDataCompanyWithBLOBs> getAllData();
 }

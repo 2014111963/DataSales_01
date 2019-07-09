@@ -13,6 +13,9 @@ mybatis:
     mapUnderscoreToCamelCase: true
 
 spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
   application:
     name: datasalesprovider
   #访问数据库的配置
