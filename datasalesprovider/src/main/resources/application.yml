@@ -1,0 +1,30 @@
+server:
+  port: 8763
+eureka:
+  client:
+    service-url:
+      defualtZone: http://127.0.0.1:8761/eureka/
+mybatis:
+  typeAliasesPackage: com.zzc.datasalesprovider.Model
+  mapperLocations: classpath*:/mapper/**Mapper.xml
+  configuration:
+    conf-iglocation: classpath:/mybatis/mybatis-config.xml
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    mapUnderscoreToCamelCase: true
+
+spring:
+  application:
+    name: datasalesprovider
+  #访问数据库的配置
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/dataSales?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 1111
+    driver-class-name: com.mysql.jdbc.Driver
+
+#pagehelper分页插件配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

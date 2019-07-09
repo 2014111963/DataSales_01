@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zzc.datasalesprovider.Mapper.CompanyDataCompanyMapper" >
+  <resultMap id="BaseResultMap" type="com.zzc.datasalesprovider.Model.CompanyDataCompany" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="fixed_telephone" property="fixedTelephone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="zip_code" property="zipCode" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="legal_person" property="legalPerson" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="established" property="established" jdbcType="VARCHAR" />
+    <result column="number_of_staff" property="numberOfStaff" jdbcType="VARCHAR" />
+    <result column="capital" property="capital" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zzc.datasalesprovider.Model.CompanyDataCompanyWithBLOBs" extends="BaseResultMap" >
+    <result column="address" property="address" jdbcType="LONGVARCHAR" />
+    <result column="productions" property="productions" jdbcType="LONGVARCHAR" />
+    <result column="business_scope" property="businessScope" jdbcType="LONGVARCHAR" />
+    <result column="business_license_number" property="businessLicenseNumber" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, number, name, province, city, area, contact, position, tel, fixed_telephone, 
+    email, zip_code, fax, legal_person, status, established, number_of_staff, capital, 
+    category, created_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    address, productions, business_scope, business_license_number
+  </sql>
+
+  <select id="selectAllData" resultMap="ResultMapWithBLOBs"
+          parameterType="com.zzc.datasalesprovider.Model.CompanyDataCompanyWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from companydata_company where city = #{city,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from companyData_company
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from companyData_company
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zzc.datasalesprovider.Model.CompanyDataCompanyWithBLOBs" >
+    insert into companyData_company (id, number, name, 
+      province, city, area, 
+      contact, position, tel, 
+      fixed_telephone, email, zip_code, 
+      fax, legal_person, status, 
+      established, number_of_staff, capital, 
+      category, created_time, address, 
+      productions, business_scope, business_license_number
+      )
+    values (#{id,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{contact,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{fixedTelephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, 
+      #{fax,jdbcType=VARCHAR}, #{legalPerson,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{established,jdbcType=VARCHAR}, #{numberOfStaff,jdbcType=VARCHAR}, #{capital,jdbcType=VARCHAR}, 
+      #{category,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{address,jdbcType=LONGVARCHAR}, 
+      #{productions,jdbcType=LONGVARCHAR}, #{businessScope,jdbcType=LONGVARCHAR}, #{businessLicenseNumber,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zzc.datasalesprovider.Model.CompanyDataCompanyWithBLOBs" >
+    insert into companyData_company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="fixedTelephone != null" >
+        fixed_telephone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="zipCode != null" >
+        zip_code,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+      <if test="legalPerson != null" >
+        legal_person,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="established != null" >
+        established,
+      </if>
+      <if test="numberOfStaff != null" >
+        number_of_staff,
+      </if>
+      <if test="capital != null" >
+        capital,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="productions != null" >
+        productions,
+      </if>
+      <if test="businessScope != null" >
+        business_scope,
+      </if>
+      <if test="businessLicenseNumber != null" >
+        business_license_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedTelephone != null" >
+        #{fixedTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null" >
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="established != null" >
+        #{established,jdbcType=VARCHAR},
+      </if>
+      <if test="numberOfStaff != null" >
+        #{numberOfStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="capital != null" >
+        #{capital,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="productions != null" >
+        #{productions,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="businessScope != null" >
+        #{businessScope,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="businessLicenseNumber != null" >
+        #{businessLicenseNumber,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zzc.datasalesprovider.Model.CompanyDataCompanyWithBLOBs" >
+    update companyData_company
+    <set >
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedTelephone != null" >
+        fixed_telephone = #{fixedTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        zip_code = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null" >
+        legal_person = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="established != null" >
+        established = #{established,jdbcType=VARCHAR},
+      </if>
+      <if test="numberOfStaff != null" >
+        number_of_staff = #{numberOfStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="capital != null" >
+        capital = #{capital,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="productions != null" >
+        productions = #{productions,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="businessScope != null" >
+        business_scope = #{businessScope,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="businessLicenseNumber != null" >
+        business_license_number = #{businessLicenseNumber,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zzc.datasalesprovider.Model.CompanyDataCompanyWithBLOBs" >
+    update companyData_company
+    set number = #{number,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      fixed_telephone = #{fixedTelephone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      zip_code = #{zipCode,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      legal_person = #{legalPerson,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      established = #{established,jdbcType=VARCHAR},
+      number_of_staff = #{numberOfStaff,jdbcType=VARCHAR},
+      capital = #{capital,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      address = #{address,jdbcType=LONGVARCHAR},
+      productions = #{productions,jdbcType=LONGVARCHAR},
+      business_scope = #{businessScope,jdbcType=LONGVARCHAR},
+      business_license_number = #{businessLicenseNumber,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zzc.datasalesprovider.Model.CompanyDataCompany" >
+    update companyData_company
+    set number = #{number,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      fixed_telephone = #{fixedTelephone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      zip_code = #{zipCode,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      legal_person = #{legalPerson,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      established = #{established,jdbcType=VARCHAR},
+      number_of_staff = #{numberOfStaff,jdbcType=VARCHAR},
+      capital = #{capital,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
