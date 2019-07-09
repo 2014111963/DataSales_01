@@ -2,6 +2,7 @@ package com.zzc.datasaleslogin.Controller;
 
 import com.zzc.datasaleslogin.Model.User;
 import com.zzc.datasaleslogin.Service.UserService;
+import com.zzc.datasaleslogin.Util.CreateToken;
 import com.zzc.datasaleslogin.Util.MyRedis;
 import com.zzc.datasaleslogin.Util.Result;
 import com.zzc.datasaleslogin.Util.SendMessageUtil;
@@ -41,7 +42,10 @@ public class UserController {
      */
     @PostMapping(value = "/login")
     public Result login(@RequestBody User user){
-        return userService.login(user);
+        Result<User> result = userService.login(user);
+        result.setToken(CreateToken.getToken(result.getDetail()));
+        redis.set("Token:",CreateToken.getToken(result.getDetail()),1800);  //设置Token缓存1800s(30分钟)
+        return result;
     }
 
     /**

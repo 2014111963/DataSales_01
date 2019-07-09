@@ -5,6 +5,8 @@ public class Result<T> {
     private String msg;
     //数据是否正常请求
     private boolean success;
+
+    private String token;
     //具体返回的数据
     private T detail;
 
@@ -18,6 +20,14 @@ public class Result<T> {
 
     public void setSuccess(boolean success) {
         this.success = success;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public boolean isSuccess() {
