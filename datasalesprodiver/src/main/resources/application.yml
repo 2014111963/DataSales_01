@@ -14,9 +14,14 @@ mybatis:
 
 spring:
   redis:
-    host: 127.0.0.1
+    host: 144.34.227.161
     port: 6379
-  application:
+    jedis:
+      pool:
+        max-active: 5
+        max-wait: 1
+        max-idle: 8
+    timeout: 5000
     name: datasalesprovider
   #访问数据库的配置
   datasource:

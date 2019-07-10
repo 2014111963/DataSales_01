@@ -36,7 +36,7 @@ public class CompanyDataController {
     @PostMapping("/dataDownload")
     public JSONObject dataDownload(@RequestBody FilterCondition data){
         JSONObject json = new JSONObject();
-        if(redis.get(data.getUsername()).equals(data.getToken())) {
+        if(data.getToken().equals(redis.get(data.getUsername()))) {
             List<CompanyDataCompanyWithBLOBs> list = companyDataService.getFilterData(data);
             FieldMap.setFieldMap();
             try {
@@ -66,7 +66,7 @@ public class CompanyDataController {
     @PostMapping("/companyData")
     public JSONObject getAllData(@RequestBody FilterCondition data){
         JSONObject json = new JSONObject();
-        if(redis.get(data.getUsername()).equals(data.getToken())) {
+        if(data.getToken().equals(redis.get(data.getUsername()))) {
             List<CompanyDataCompanyWithBLOBs> list = companyDataService.getFilterData(data);
             if (list != null) {
                 json.put("provider", "8763");
@@ -83,11 +83,11 @@ public class CompanyDataController {
      * 数据预览界面加载数据，查询出所以的数据
      * @return
      */
-    @GetMapping("/companyDataId")
+    @GetMapping("/allCompanyData")
     public JSONObject getByPrimaryKey(@RequestBody FilterCondition data){
 
         JSONObject json = new JSONObject();
-        if(redis.get(data.getUsername()).equals(data.getToken())) {
+        if(data.getToken().equals(redis.get(data.getUsername()))) {
             List<CompanyDataCompanyWithBLOBs> list = companyDataService.getAllData();
             if (list != null) {
                 json.put("provider", "8763");
