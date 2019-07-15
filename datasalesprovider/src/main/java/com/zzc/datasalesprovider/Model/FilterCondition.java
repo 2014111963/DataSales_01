@@ -6,7 +6,7 @@ public class FilterCondition {
 
     private int pageNum;
 
-    private String token;
+    private String token;  // 用户查询，携带Token，判断是否登录
 
     private String username; //每次查询带上用户名，即用户注册手机号码
 

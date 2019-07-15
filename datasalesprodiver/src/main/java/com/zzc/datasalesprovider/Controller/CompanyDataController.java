@@ -40,7 +40,7 @@ public class CompanyDataController {
             List<CompanyDataCompanyWithBLOBs> list = companyDataService.getFilterData(data);
             FieldMap.setFieldMap();
             try {
-                ExcelUtil.listToExcel(list, FieldMap.getFieldMap(), "下载数据", response);
+                // ExcelUtil.listToExcel(list, FieldMap.getFieldMap(), "下载数据", response);
                 System.out.println("下载成功！");
             } catch (Exception e) {
                 System.out.println("下载失败！");
@@ -66,7 +66,6 @@ public class CompanyDataController {
     @PostMapping("/companyData")
     public JSONObject getAllData(@RequestBody FilterCondition data){
         JSONObject json = new JSONObject();
-        System.out.println(redis.get(data.getUsername()));
         if(data.getToken().equals(redis.get(data.getUsername()))) {
             List<CompanyDataCompanyWithBLOBs> list = companyDataService.getFilterData(data);
             if (list != null) {

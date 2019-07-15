@@ -22,6 +22,7 @@ spring:
         max-wait: 1
         max-idle: 8
     timeout: 5000
+  application:
     name: datasalesprovider
   #访问数据库的配置
   datasource:

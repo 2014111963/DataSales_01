@@ -40,7 +40,7 @@ public class CompanyDataController {
             List<CompanyDataCompanyWithBLOBs> list = companyDataService.getFilterData(data);
             FieldMap.setFieldMap();
             try {
-                ExcelUtil.listToExcel(list, FieldMap.getFieldMap(), "下载数据", response);
+               // ExcelUtil.listToExcel(list, FieldMap.getFieldMap(), "下载数据", response);
                 System.out.println("下载成功！");
             } catch (Exception e) {
                 System.out.println("下载失败！");

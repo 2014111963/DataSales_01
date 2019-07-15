@@ -10,7 +10,7 @@ public class FilterCondition {
 
     private String username; //每次查询带上用户名，即用户注册手机号码
 
-    private int pageSize = 5;
+    private int pageSize = 1000;
 
     private String province;
 
