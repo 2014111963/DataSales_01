@@ -2,10 +2,11 @@
 server:
   port: 8761
 #eureka 基本信息配置
+#安全认证配置
 eureka:
   instance:
     #注册到eurekaip地址(注册中心IP)
-    hostname: 144.34.227.161
+    hostname: 127.0.0.1
   client:
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
