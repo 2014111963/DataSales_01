@@ -58,7 +58,7 @@ public class ExcelController {
         data.setProvince(province);  // 参数设置省份
         data.setProductions(productions);  //参数设置行业查找
         data.setTel(tel);  // 参数设置是否有电话
-        data.setPageSize(1000);  // 参数设置是否有电话
+        data.setPageSize(1000);  // 参数设置返回值大小
         List<Company> list = companyService.searchCompany(data);
         excelData.add(head);
         for(int i=0;i<list.size();i++) {
