@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-@RequestMapping("/User")
+@RequestMapping("/user")
 public class UserController {
     @Resource
     UserService userService;
@@ -42,9 +42,14 @@ public class UserController {
      */
     @PostMapping(value = "/login")
     public Result login(@RequestBody User user){
-        Result<User> result = userService.login(user);
-        result.setToken(CreateToken.getToken(result.getDetail()));
-        redis.set("Token:",CreateToken.getToken(result.getDetail()),1800);  //设置Token缓存1800s(30分钟)
+        Result<User> result = new Result<User>();
+        try {
+            result = userService.login(user);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        result.setToken(CreateToken.getToken(result.getDetail()));   //根据用户名创建Token
+        redis.set(user.getUsername(),CreateToken.getToken(result.getDetail()),1800);  //设置Token缓存1800s(30分钟)
         return result;
     }
 

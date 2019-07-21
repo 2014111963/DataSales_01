@@ -22,6 +22,8 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
+    @Select( "select id , username , password from user where username = #{username}" )
+    User loadUserByUsername(@Param("username") String username);
     /**
      * 查询所以用户
      * @return List<User>

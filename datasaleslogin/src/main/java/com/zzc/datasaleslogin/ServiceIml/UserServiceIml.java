@@ -57,7 +57,7 @@ public class UserServiceIml implements UserService {
      */
     public Result login(User user) {
         Result result = new Result();
-        user.setUsername(user.getPhone());
+        System.out.println(user.getUsername());
         result.setSuccess(false);
         result.setDetail(null);
         try {

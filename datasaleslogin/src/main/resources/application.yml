@@ -16,11 +16,18 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
+    jedis:
+      pool:
+        max-active: 5
+        max-wait: 1
+        max-idle: 8
+    timeout: 5000
+
   application:
     name: datasaleslogin
   #访问数据库的配置
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/dataSales
+    url: jdbc:mysql://localhost:3306/dataSales?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: 1111
     driver-class-name: com.mysql.jdbc.Driver
