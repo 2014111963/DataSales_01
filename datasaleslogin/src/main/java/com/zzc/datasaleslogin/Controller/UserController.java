@@ -28,7 +28,7 @@ public class UserController {
     /**
      * 注册
      */
-    @PostMapping(value = "/regist")
+    @PostMapping(value = "/register")
     public Result regist(@RequestBody User user){
         if(user.getMeaasgeCode().equals(redis.get("sms_"+user.getPhone()))) {
             return userService.regist(user);
@@ -54,9 +54,37 @@ public class UserController {
     }
 
     /**
+     * 更新秘密
+     */
+    @PostMapping(value = "/update_password")
+    public Result updatePassword(@RequestBody User user){
+        Result<User> result = new Result<User>();
+        try {
+            result = userService.updatePassword(user);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * 更新秘密
+     */
+    @PostMapping(value = "/reset_password")
+    public Result resetPassword(@RequestBody User user){
+        Result<User> result = new Result<User>();
+        try {
+            result = userService.resetPassword(user);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
      * 短线发送 获取验证码
      */
-    @PostMapping(value = "/sendCode")
+    @PostMapping(value = "/send_sms_code")
     @ResponseBody
     public String sendCode(@RequestBody User user){
         String messageCode = SendMessageUtil.getRandomCode(6);

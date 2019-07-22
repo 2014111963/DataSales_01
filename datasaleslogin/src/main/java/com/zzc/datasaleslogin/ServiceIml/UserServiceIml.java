@@ -76,4 +76,29 @@ public class UserServiceIml implements UserService {
         }
         return result;
     }
+    public Result resetPassword(User user){
+        Result result = new Result();
+        try{
+            userMapper.update(user);
+            result.setMsg("重置成功！");
+            return result;
+        }catch (Exception e) {
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public Result updatePassword(User user){
+        Result result = new Result();
+        try{
+            userMapper.update(user);
+            result.setMsg("更新成功！");
+            return result;
+        }catch (Exception e) {
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

@@ -51,6 +51,13 @@ public interface UserMapper {
     void regist(User user);
 
     /**
+     * 更新/重置密码
+     * @param user
+     */
+    @Update("update user set password = #{password} where username = #{username}")
+    void update(User user);
+
+    /**
      * 登录
      * @param user
      * @return

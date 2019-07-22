@@ -14,4 +14,8 @@ public interface UserService {
     public Result regist(User user);
 
     public Result login(User user);
+
+    public Result resetPassword(User user);
+
+    public Result updatePassword(User user);
 }
